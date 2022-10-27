@@ -6,9 +6,9 @@
 
 *Please fill in this information before submission*
 
-* **Student Name:** 
-* **Student G-Number:** 
-* **Heroku Deployment URL:**
+* **Student Name:*jaime pena* 
+* **Student G-Number:*01300925* 
+* **Heroku Deployment URL:*https://jaime-pena-swe432-hw3.herokuapp.com/*
 
 ### Documentation of your Web App and React Components
 
@@ -16,15 +16,79 @@
 
 **General App Description:** This web application provides information about cities loaded from a centralized database at www.citiesinfo.org. This app can help people find reference information about various city attributes such as population, capitals, and other demographic information.
 
-* **Endpoint 1:** Retrieve a city from our Washington DC Database
-  * API Endpoint: GET /city/:cityID
-  * Example: GET /city/21
-  * Expected Output: "Fairfax"
+* **Endpoint 1:** Retrieves a specific exercise object from firebase based on id number
+  * API Endpoint: GET '/exercise/:id'
+  * Example: GET '/exercise/0001'
+  * Expected Output:
+  {
 
-* **Component 1:** City List Component
+    "bodyPart": "waist",
+    "id": "0001",
+    "equipment": "body weight",
+    "target": "abs",
+    "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0001.gif",
+    "name": "3/4 sit-up"
+}
+
+* **Endpoint 2:** Retrieve  5 workouts that do require gym equipment
+  * API Endpoint: GET '/inGym/:bodyPart?/:numberOfExercises?'
+  * Example: GET '/inGym/'
+  * Expected Output:(random output, objects will always be different) {
+        "bodyPart": "chest",
+        "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1285.gif",
+        "id": "1285",
+        "target": "pectorals",
+        "equipment": "dumbbell",
+        "name": "dumbbell one arm bench fly"
+    },
+    {
+        "target": "serratus anterior",
+        "equipment": "smith machine",
+        "bodyPart": "chest",
+        "name": "smith incline shoulder raises",
+        "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0759.gif",
+        "id": "0759"
+    },
+    {
+        "equipment": "barbell",
+        "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/0458.gif",
+        "id": "0458",
+        "name": "floor fly (with barbell)",
+        "target": "pectorals",
+        "bodyPart": "chest"
+    },
+    {
+        "target": "pectorals",
+        "bodyPart": "chest",
+        "equipment": "cable",
+        "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/2144.gif",
+        "name": "cable seated chest press",
+        "id": "2144"
+    },
+    {
+        "gifUrl": "http://d205bpvrqc9yn1.cloudfront.net/1280.gif",
+        "id": "1280",
+        "bodyPart": "chest",
+        "target": "pectorals",
+        "name": "dumbbell incline one arm fly on exercise ball",
+        "equipment": "dumbbell"
+    }
+] 
+
+* **Component 1:** inGym
 	* API Endpoint(s):
-  		* GET /cities
-  * Expected display: An html list of the cities contained within the Firebase database.
+  		* GET '/inGym/'
+  * Expected display: A list of workout GIFs witht their respective names. Each workout was selected as an exercise that requires gym equipment
+
+  * **Component 2:** MinimalEquipment
+  * API Endpoint(s):
+      * GET '/minimalEquipment/'
+  * Expected display: A list of workout GIFs witht their respective names.Each workout was selected as an exercise that does not require gym equipment
+
+  * **Component 3:** GetInfo
+  * API Endpoint(s):
+      * GET /exercise/:id'
+  * Expected display: This component gets the id as a property and fetches the information for that particular exercise. After retrieveing, the information is displayed below each GIF as a list of properties.
 
 ## Project Overview
 
