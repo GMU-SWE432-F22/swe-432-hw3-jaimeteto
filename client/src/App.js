@@ -1,39 +1,93 @@
 import React, { Component } from 'react';
 import './App.css';
+import InGymWorkouts from './inGymWorkouts.js';
+import MinimalEquipment from './minimalEquipment.js';
+
+
+class Button extends Component{
+
+
+
+  render(){
+    return(
+      <button{...this.props}>
+        {this.props.name}
+      </button>
+
+      );
+  }
+}
+
 
 class App extends Component {
   // Initialize state
-  state = { cities: [] }
 
-  // Fetch passwords after first mount
-  componentDidMount() {
-    this.getCities();
+  constructor(props){
+
+    super(props);
+
+  this.state = { clicked1: false,
+                  clicked2:false
+                  
+                   }
+   this.handleClick1 = this.handleClick1.bind(this);
+   this.handleClick2 = this.handleClick2.bind(this);
+    
   }
 
-  getCities() {
-    fetch('/cities')
-      .then(res => res.json())
-      .then(cities => this.setState({ cities }));
-}
+  
+
+  handleClick1(){
+
+    this.setState({
+      clicked1:!this.state.clicked1,
+
+      
+    });
+  }
+
+ handleClick2(){
+
+    this.setState({
+      clicked2:!this.state.clicked2,
+      
+    });
+  }
+  
+
+ 
+
 
 render() {
-const { cities } = this.state;
+
+
+
 
     return (
       <div className="App">
-        {/* Render the cities*/}
-          <div>
-            <h1>Cities</h1>
-            <ul className="cities">
-              {cities.map((city, index) =>
-                <li key={index}>
-                  {city}
-                </li>
-              )}
-            </ul>
-          </div>
-          </div>
-      );    
+        
+          
+            <h1>Workout Routines</h1>
+
+           
+
+            <div>
+                <Button onClick={this.handleClick1} name = "inGym"/>
+               <Button onClick={this.handleClick2} name = "Minimal Equipment"/>
+               
+              {this.state.clicked1 &&(<InGymWorkouts/>)}
+              {this.state.clicked2 && (<MinimalEquipment/>)}
+            </div>
+                    
+          
+
+           
+
+            
+          <cite>ExerciseDB API created by Justin Mozley</cite>
+          
+      </div>
+          );
   }
 }
 
